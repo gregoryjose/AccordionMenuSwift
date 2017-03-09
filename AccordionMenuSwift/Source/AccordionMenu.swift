@@ -36,6 +36,8 @@ open class AccordionTableViewController: UITableViewController {
         
         self.lastCellExpanded = NoCellExpanded
         self.tableView.tableFooterView = UIView()
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override open func didReceiveMemoryWarning() {
@@ -209,7 +211,9 @@ extension AccordionTableViewController {
             let text = child["text"]
             let detail = child["detail"]
             cell.textLabel!.text = text
+            cell.textLabel?.numberOfLines = 0
             cell.detailTextLabel?.text = detail
+            cell.detailTextLabel?.numberOfLines = 0
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: parentCellIdentifier, for: indexPath)
