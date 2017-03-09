@@ -205,7 +205,11 @@ extension AccordionTableViewController {
         
         if !isParentCell {
             cell = tableView.dequeueReusableCell(withIdentifier: childCellIdentifier, for: indexPath)
-            cell.textLabel!.text = self.dataSource[parent].childs[indexPath.row - actualPosition - 1]
+            let child = self.dataSource[parent].childs[indexPath.row - actualPosition - 1]
+            let text = child["text"]
+            let detail = child["detail"]
+            cell.textLabel!.text = text
+            cell.detailTextLabel?.text = detail
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: parentCellIdentifier, for: indexPath)
